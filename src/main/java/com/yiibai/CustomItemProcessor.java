@@ -3,6 +3,7 @@ package com.yiibai;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.springframework.batch.item.ItemProcessor;
+import org.apache.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDPage;
 
 import java.io.IOException;
@@ -11,6 +12,45 @@ import java.io.IOException;
  * Created by Jack Yao on 2021/10/28 10:03 下午
  */
 public class CustomItemProcessor implements ItemProcessor<Tutorial, Tutorial> {
+	
+	private final static Logger log = Logger.getLogger(CustomItemProcessor.class);
+/*CSV TO XML*/	
+    @Override
+    public Tutorial process(Tutorial item) throws Exception {   
+        log.info(" - VVVVV - process - OOOOO - ");
+
+    	System.out.println(" - VVVVV - process - OOOOO - ");
+
+        System.out.println("Processing..." + item);
+
+        // Creating PDF document object
+        //PDDocument doc = PDDocument.load(new File("D:/test.pdf"));
+
+        // Creating a blank page
+        PDPage page = new PDPage();
+        //doc.addPage(page);
+        //PDPageContentStream contentStream = new PDPageContentStream(doc, page);
+
+        String[][] content = { { "Id : ", "" + item.getTutorial_id() }, { "Title : ", item.getTutorial_title() },
+                { "Authour : ", item.getTutorial_author() }, { "Submission Date : ", item.getSubmission_date() } };
+        //drawTable(page, contentStream, 700, 100, content);
+
+        //contentStream.close();
+        //doc.save("D:/test.pdf");
+        for (String[] strings : content) {
+			for (String strings2 : strings) {
+				
+				System.out.println("content : " + strings2);
+			}
+		}
+    	System.out.println(" - _____ - process return item - OOOOO - ");
+        
+    	log.info(" - _____ - return item - XXXXX - ");
+        return item;
+    }
+	
+	
+/*
     public static void drawTable(PDPage page, PDPageContentStream contentStream, float y, float margin,
                                  String[][] content) throws IOException {
         final int rows = content.length;
@@ -54,26 +94,6 @@ public class CustomItemProcessor implements ItemProcessor<Tutorial, Tutorial> {
             textx = margin + cellMargin;
         }
     }
+*/
 
-    @Override
-    public Tutorial process(Tutorial item) throws Exception {
-        System.out.println("Processing..." + item);
-
-        // Creating PDF document object
-        //PDDocument doc = PDDocument.load(new File("D:/test.pdf"));
-
-        // Creating a blank page
-        PDPage page = new PDPage();
-        //doc.addPage(page);
-        //PDPageContentStream contentStream = new PDPageContentStream(doc, page);
-
-        String[][] content = { { "Id", "" + item.getTutorial_id() }, { "Title", item.getTutorial_title() },
-                { "Authour", item.getTutorial_author() }, { "Submission Date", item.getSubmission_date() } };
-        //drawTable(page, contentStream, 700, 100, content);
-
-        //contentStream.close();
-        //doc.save("D:/test.pdf");
-        System.out.println("Hello");
-        return item;
-    }
 }

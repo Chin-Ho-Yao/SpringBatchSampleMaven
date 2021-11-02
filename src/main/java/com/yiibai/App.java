@@ -1,5 +1,6 @@
 package com.yiibai;
 
+import org.apache.log4j.BasicConfigurator;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
@@ -16,7 +17,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App {
     public static void main(String[] args) throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
-        String[] springConfig = {"jobconfig.xml"};
+    	System.out.println(" - VVVVV - main - OOOOO - ");
+
+        String[] springConfig = {"context.xml", "jobconfig.xml" };
 
         //Creating the application context object
         ApplicationContext context = new ClassPathXmlApplicationContext(springConfig);
@@ -28,10 +31,12 @@ public class App {
         Job job = (Job) context.getBean("helloWorldJob");
 
         //Executing the JOB
+    	System.out.println(" - VVVVV - jobLauncher.run - OOOOO - ");
         JobExecution execution = jobLauncher.run(job,new JobParameters());
+        System.out.println(" - _____ - jobLauncher.run - OOOOO - ");
         System.out.println("Exit Status : " + execution.getStatus());
 
-
+    	System.out.println(" - _____ - main - OOOOO - ");
 
     }
 }
