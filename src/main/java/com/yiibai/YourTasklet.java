@@ -6,10 +6,7 @@ import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 
-/**
- * Created by Jack Yao on 2021/10/27 11:18 下午
- */
-public class MyTasklet implements Tasklet {
+public class YourTasklet implements Tasklet {
     private final static Logger log  = Logger.getLogger(MyTasklet.class);
 
 
@@ -18,7 +15,7 @@ public class MyTasklet implements Tasklet {
         
         log.info(" - VVVVV - execute - XXXXX - ");
         
-        log.info(" - XXXXX -  Hello This is a sample example of spring batch in MyTasklet - OOOOO - ");
+        log.info(" - XXXXX -  Hello This is a sample example of spring batch in YourTasklet - OOOOO - ");
     	log.info(" - _____ - execute - XXXXX - ");
     	
         return RepeatStatus.FINISHED;
