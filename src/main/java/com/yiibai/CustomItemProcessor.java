@@ -18,33 +18,7 @@ public class CustomItemProcessor implements ItemProcessor<Tutorial, Tutorial> {
     @Override
     public Tutorial process(Tutorial item) throws Exception {   
         log.info(" - VVVVV - process - OOOOO - ");
-
-    	System.out.println(" - VVVVV - process - OOOOO - ");
-
-        System.out.println("Processing..." + item);
-
-        // Creating PDF document object
-        //PDDocument doc = PDDocument.load(new File("D:/test.pdf"));
-
-        // Creating a blank page
-        PDPage page = new PDPage();
-        //doc.addPage(page);
-        //PDPageContentStream contentStream = new PDPageContentStream(doc, page);
-
-        String[][] content = { { "Id : ", "" + item.getTutorial_id() }, { "Title : ", item.getTutorial_title() },
-                { "Authour : ", item.getTutorial_author() }, { "Submission Date : ", item.getSubmission_date() } };
-        //drawTable(page, contentStream, 700, 100, content);
-
-        //contentStream.close();
-        //doc.save("D:/test.pdf");
-        for (String[] strings : content) {
-			for (String strings2 : strings) {
-				
-				System.out.println("content : " + strings2);
-			}
-		}
-    	System.out.println(" - _____ - process return item - OOOOO - ");
-        
+        System.out.println("Processing..." + item); 
     	log.info(" - _____ - return item - XXXXX - ");
         return item;
     }
