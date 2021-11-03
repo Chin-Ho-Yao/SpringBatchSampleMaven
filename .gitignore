@@ -3,3 +3,5 @@ build/*
 log/**
 target/*
 *iml*
+/target/
+/bin/
